@@ -9,7 +9,7 @@ HOST1 = "127.0.0.1"
 caminho_projeto = os.path.dirname(os.path.abspath("__file__"))
 
 #função para receber dados ao servidor
-def cliente():
+def servidor():
     #HOST = socket.gethostbyname(socket.gethostname())               # Capta o endereco IP do Servidor
     HOST = HOST1
     PORT_SERVER = 8000                                              # Porta que o Servidor esta
@@ -24,12 +24,16 @@ def cliente():
         while True:
             print ("Conectado ao usuário")
             msg = con.recv(1024).decode()
+            
+            
             if msg == "1":
                 print("\n---------- Listagem de arquivos do servidor----------\n")
                 listar_arquivos("SERVIDOR")
+                break
             if msg == "2":
                 print("\n---------- Listagem de arquivos do cliente----------\n")
                 listar_arquivos("CLIENTE")
+                break
             if msg == "3":
                 print("\n---------- Download de arquivos do servidor----------\n")
                 listar_arquivos("SERVIDOR")
@@ -37,7 +41,8 @@ def cliente():
                 copiar_arquivo("SERVIDOR","CLIENTE",nome_arquivo)
                 print("Download realizado com êxito!")
                 print("\n---------- Arquivos cliente ----------")
-                listar_arquivos("CLIENTE")               
+                listar_arquivos("CLIENTE")     
+                break          
             if msg == "4":
                 print("\n---------- Deleção de arquivos no servidor ---------- \n")
                 listar_arquivos("SERVIDOR")
@@ -45,7 +50,8 @@ def cliente():
                 deletar_arquivo(nome_arquivo)
                 print("Arquivo deletado com êxito!")
                 print("\n---------- Arquivos servidor ----------")
-                listar_arquivos("SERVIDOR")  
+                listar_arquivos("SERVIDOR")
+                break  
             if msg == "5":
                 print("\n----------Upload de arquivos para o servidor ----------\n")
                 listar_arquivos("CLIENTE")
@@ -54,6 +60,9 @@ def cliente():
                 print("Upload realizado com êxito!")
                 print("\n---------- Arquivos servidor ----------")
                 listar_arquivos("SERVIDOR") 
+                break
+            else:
+                print ("Digite o número correto!")
 
             time.sleep(4)
             if not msg: break
@@ -63,7 +72,7 @@ def cliente():
 
 
 #função para enviar servindo como cliente --------------------------------------------------------------------------------
-def servidor():
+def cliente():
     #HOST = socket.gethostbyname(socket.gethostname())               # Endereco IP do Servidor
     HOST = HOST1
     PORT_CLIENT = 8000                                                     # Porta que o Servidor esta
@@ -97,8 +106,8 @@ def servidor():
 #função das threads
 def inicializar():
 
-    thread1 = Thread(target=cliente)                           #Thread para envio de dados 
-    thread2 = Thread(target=servidor)                          #Thread para recebimento de dados
+    thread1 = Thread(target=servidor)                           #Thread para envio de dados 
+    thread2 = Thread(target=cliente)                          #Thread para recebimento de dados
 
     thread1.start()
     thread2.start()        
