@@ -5,17 +5,17 @@ import os
 import shutil
 
 
-HOST1 = "127.0.0.1"
+HOST = "127.0.0.1"
+PORT = 8000
 caminho_projeto = os.path.dirname(os.path.abspath("__file__"))
 
 #função para receber dados ao servidor
 def servidor():
     #HOST = socket.gethostbyname(socket.gethostname())               # Capta o endereco IP do Servidor
-    HOST = HOST1
-    PORT_SERVER = 8000                                              # Porta que o Servidor esta
+    PORT = 8000                                              # Porta que o Servidor esta
 
     tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         #conexão TCP
-    orig = (HOST, PORT_SERVER)      
+    orig = (HOST, PORT)      
     tcp.bind(orig)
     tcp.listen(2)                                                   
 
@@ -25,16 +25,15 @@ def servidor():
             print ("Conectado ao usuário")
             msg = con.recv(1024).decode()
             
-            
-            if msg == "1":
+            if msg == '1':
                 print("\n---------- Listagem de arquivos do servidor----------\n")
                 listar_arquivos("SERVIDOR")
                 break
-            if msg == "2":
+            if msg == '2':
                 print("\n---------- Listagem de arquivos do cliente----------\n")
                 listar_arquivos("CLIENTE")
                 break
-            if msg == "3":
+            if msg == '3':
                 print("\n---------- Download de arquivos do servidor----------\n")
                 listar_arquivos("SERVIDOR")
                 nome_arquivo = input("Digite o nome do arquivo para fazer download: \n")
@@ -43,16 +42,15 @@ def servidor():
                 print("\n---------- Arquivos cliente ----------")
                 listar_arquivos("CLIENTE")     
                 break          
-            if msg == "4":
+            if msg == '4':
                 print("\n---------- Deleção de arquivos no servidor ---------- \n")
                 listar_arquivos("SERVIDOR")
                 nome_arquivo = input("Digite o nome do arquivo para deletar: \n")
                 deletar_arquivo(nome_arquivo)
-                print("Arquivo deletado com êxito!")
                 print("\n---------- Arquivos servidor ----------")
                 listar_arquivos("SERVIDOR")
                 break  
-            if msg == "5":
+            if msg == '5':
                 print("\n----------Upload de arquivos para o servidor ----------\n")
                 listar_arquivos("CLIENTE")
                 nome_arquivo = input("Digite o nome do arquivo para fazer upload: \n")
@@ -74,15 +72,13 @@ def servidor():
 #função para enviar servindo como cliente --------------------------------------------------------------------------------
 def cliente():
     #HOST = socket.gethostbyname(socket.gethostname())               # Endereco IP do Servidor
-    HOST = HOST1
-    PORT_CLIENT = 8000                                                     # Porta que o Servidor esta
-    dest = (HOST, PORT_CLIENT)                                             # destino de envio
-
+    dest = (HOST, PORT)                                             # destino de envio
+    
     while True:
-        try:
-            tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # configuração TCP                   
-            tcp.connect(dest)                                               # conectando
-            
+        try:  
+            tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)         # configuração TCP       
+            tcp.connect(dest)                                                # conectando
+            time.sleep(1)
             try:
                 print("------------ MEUS ARQUIVOS -------------\n")  
                 print("1. Listagem de arquivos do servidor")
@@ -100,8 +96,8 @@ def cliente():
                 tcp.close()
                 time.sleep(2)
         except:
-            print("Conexão falhou, tentaremos conectar em 10 segundos.\nCarregando...\n")
-            time.sleep(10)                                          #Tempo para uma nova tentativa
+            print("Conexão falhou, tentaremos conectar em 5 segundos.\nCarregando...\n")
+            time.sleep(5)                                          #Tempo para uma nova tentativa
 
 #função das threads
 def inicializar():
@@ -114,7 +110,8 @@ def inicializar():
 
 
 
-
+#------------------------------------------------
+    
 def listar_arquivos(pasta):
     caminho_pasta = os.path.join(caminho_projeto,pasta)
     arquivos_na_pasta = os.listdir(caminho_pasta)
