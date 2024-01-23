@@ -1,72 +1,122 @@
-20/01/2024 23:27 : Servidor iniciado
-20/01/2024 23:27 : Cliente conectado 55317
-20/01/2024 23:29 : Servidor iniciado
-20/01/2024 23:29 : Cliente conectado 55327
-20/01/2024 23:29 : Solicitação de listagem de arquivos do cliente
-20/01/2024 23:33 : Não possível inicializar o servidor.
-20/01/2024 23:35 : Servidor iniciado
-20/01/2024 23:35 : Cliente conectado 55372
-20/01/2024 23:35 : Servidor iniciado
-20/01/2024 23:36 : Cliente conectado 55376
-20/01/2024 23:50 : Servidor iniciado
-20/01/2024 23:50 : Cliente conectado 55444
-20/01/2024 23:50 : Servidor iniciado
-20/01/2024 23:50 : Cliente conectado 55447
-20/01/2024 23:51 : Solicitação de listagem de arquivos do cliente
-20/01/2024 23:51 : Servidor iniciado
-20/01/2024 23:52 : Não possível inicializar o servidor.
-20/01/2024 23:52 : Não possível inicializar o servidor.
-20/01/2024 23:52 : Servidor iniciado
-20/01/2024 23:52 : Cliente conectado 55458
-20/01/2024 23:52 : Solicitação de listagem de arquivos do servidor 
-20/01/2024 23:52 : Solicitação de listagem de arquivos do cliente
-20/01/2024 23:52 : Solicitação de listagem de arquivos do servidor 
-20/01/2024 23:52 : Solicitação de listagem de arquivos do cliente
-21/01/2024 00:02 : Servidor iniciado
-21/01/2024 00:02 : Cliente conectado 55506
-21/01/2024 11:20 : Servidor iniciado
-21/01/2024 11:20 : Cliente conectado 62469
-21/01/2024 11:21 : Servidor iniciado
-21/01/2024 11:21 : Cliente conectado 62473
-21/01/2024 11:21 : Servidor iniciado
-21/01/2024 11:22 : Cliente conectado 62477
-21/01/2024 11:23 : Servidor iniciado
-21/01/2024 11:24 : Cliente conectado 62486
-21/01/2024 11:26 : Servidor iniciado
-21/01/2024 11:26 : Cliente conectado 62495
-21/01/2024 11:31 : Servidor iniciado
-21/01/2024 11:31 : Cliente conectado 62515
-22/01/2024 12:37 : Servidor iniciado
-22/01/2024 12:37 : Cliente conectado 56734
-22/01/2024 13:27 : Servidor iniciado
-22/01/2024 13:28 : Cliente conectado 58188
-22/01/2024 13:30 : Servidor iniciado
-22/01/2024 13:30 : Cliente conectado 58195
-22/01/2024 13:31 : Servidor iniciado
-22/01/2024 13:31 : Cliente conectado 58210
-22/01/2024 13:31 : Solicitação de listagem de arquivos do servidor 
-22/01/2024 13:32 : Servidor iniciado
-22/01/2024 13:32 : Cliente conectado 58216
-22/01/2024 14:45 : Servidor iniciado
-22/01/2024 14:45 : Cliente conectado 58837
-22/01/2024 14:46 : Servidor iniciado
-22/01/2024 14:46 : Cliente conectado 58847
-22/01/2024 14:48 : Servidor iniciado
-22/01/2024 14:48 : Cliente conectado 58857
-22/01/2024 14:49 : Servidor iniciado
-22/01/2024 14:49 : Cliente conectado 58862
-22/01/2024 14:51 : Servidor iniciado
-22/01/2024 14:51 : Cliente conectado 58882
-22/01/2024 14:56 : Servidor iniciado
-22/01/2024 14:57 : Cliente conectado 59084
-22/01/2024 14:58 : Servidor iniciado
-22/01/2024 14:58 : Cliente conectado 59099
-22/01/2024 14:58 : Solicitação de listagem de arquivos do servidor 
-22/01/2024 14:58 : Solicitação de listagem de arquivos do servidor 
-22/01/2024 14:58 : Solicitação de listagem de arquivos do servidor 
-22/01/2024 14:59 : Servidor iniciado
-22/01/2024 14:59 : Cliente conectado 59108
-22/01/2024 14:59 : Solicitação de listagem de arquivos do servidor 
-22/01/2024 15:02 : Servidor iniciado
-22/01/2024 15:02 : Cliente conectado 59191
-22/01/2024 15:02 : Solicitação de listagem de arquivos do servidor 
+22/01/2024 19:13 : Servidor iniciado
+22/01/2024 19:13 : Servidor iniciado
+22/01/2024 19:13 : Cliente conectado 62351
+22/01/2024 19:18 : Servidor iniciado
+22/01/2024 19:18 : Cliente conectado 62395
+22/01/2024 19:18 : Servidor iniciado
+22/01/2024 19:19 : Cliente conectado 62396
+22/01/2024 19:21 : Servidor iniciado
+22/01/2024 19:21 : Cliente conectado 62424
+22/01/2024 19:35 : Servidor iniciado
+22/01/2024 19:35 : Cliente conectado 62580
+22/01/2024 19:35 : Servidor iniciado
+22/01/2024 19:35 : Cliente conectado 62587
+22/01/2024 19:36 : Servidor iniciado
+22/01/2024 19:36 : Cliente conectado 62588
+22/01/2024 19:36 : Servidor iniciado
+22/01/2024 19:36 : Cliente conectado 62589
+22/01/2024 19:38 : Servidor iniciado
+22/01/2024 19:38 : Cliente conectado 62601
+22/01/2024 19:38 : Servidor iniciado
+22/01/2024 19:39 : Cliente conectado 62612
+22/01/2024 19:40 : Servidor iniciado
+22/01/2024 19:40 : Cliente conectado 62641
+22/01/2024 19:42 : Servidor iniciado
+22/01/2024 19:42 : Cliente conectado 62648
+22/01/2024 19:44 : Servidor iniciado
+22/01/2024 19:44 : Cliente conectado 62659
+22/01/2024 19:45 : Servidor iniciado
+22/01/2024 19:45 : Cliente conectado 62668
+22/01/2024 19:46 : Servidor iniciado
+22/01/2024 19:46 : Cliente conectado 62669
+22/01/2024 19:46 : Servidor iniciado
+22/01/2024 19:47 : Cliente conectado 62670
+22/01/2024 19:47 : Servidor iniciado
+22/01/2024 19:47 : Cliente conectado 62679
+22/01/2024 19:47 : Servidor iniciado
+22/01/2024 19:47 : Cliente conectado 62689
+22/01/2024 19:48 : Servidor iniciado
+22/01/2024 19:48 : Cliente conectado 62690
+22/01/2024 19:49 : Servidor iniciado
+22/01/2024 19:49 : Cliente conectado 62702
+22/01/2024 19:50 : Servidor iniciado
+22/01/2024 19:50 : Cliente conectado 62703
+22/01/2024 19:51 : Servidor iniciado
+22/01/2024 19:51 : Cliente conectado 62704
+22/01/2024 19:52 : Servidor iniciado
+22/01/2024 19:52 : Cliente conectado 62712
+22/01/2024 19:53 : Servidor iniciado
+22/01/2024 19:53 : Cliente conectado 62713
+22/01/2024 19:56 : Servidor iniciado
+22/01/2024 19:56 : Cliente conectado 62737
+22/01/2024 19:57 : Servidor iniciado
+22/01/2024 19:57 : Cliente conectado 62749
+22/01/2024 19:58 : Servidor iniciado
+22/01/2024 19:58 : Cliente conectado 62752
+22/01/2024 21:58 : Servidor iniciado
+22/01/2024 21:58 : Cliente conectado 64480
+22/01/2024 21:59 : Servidor iniciado
+22/01/2024 21:59 : Servidor iniciado
+22/01/2024 22:00 : Cliente conectado 64492
+22/01/2024 22:01 : Servidor iniciado
+22/01/2024 22:01 : Cliente conectado 64498
+22/01/2024 22:02 : Servidor iniciado
+22/01/2024 22:02 : Cliente conectado 64518
+22/01/2024 22:02 : Servidor iniciado
+22/01/2024 22:02 : Cliente conectado 64523
+22/01/2024 22:03 : Servidor iniciado
+22/01/2024 22:03 : Cliente conectado 64532
+22/01/2024 22:03 : Cliente conectado 64533
+22/01/2024 22:04 : Servidor iniciado
+22/01/2024 22:04 : Cliente conectado 64538
+22/01/2024 22:05 : Servidor iniciado
+22/01/2024 22:05 : Cliente conectado 64551
+22/01/2024 22:05 : Servidor iniciado
+22/01/2024 22:05 : Cliente conectado 64559
+22/01/2024 22:06 : Servidor iniciado
+22/01/2024 22:06 : Cliente conectado 64565
+22/01/2024 22:10 : Servidor iniciado
+22/01/2024 22:10 : Cliente conectado 64594
+22/01/2024 22:10 : Solicitação de listagem de arquivos do servidor 
+22/01/2024 22:11 : Servidor iniciado
+22/01/2024 22:11 : Cliente conectado 64601
+22/01/2024 22:11 : Solicitação de listagem de arquivos do servidor 
+22/01/2024 22:15 : Servidor iniciado
+22/01/2024 22:15 : Cliente conectado 64638
+22/01/2024 22:16 : Solicitação de listagem de arquivos do servidor
+22/01/2024 22:16 : Solicitação de listagem de arquivos do servidor
+22/01/2024 22:17 : Servidor iniciado
+22/01/2024 22:17 : Cliente conectado 64654
+22/01/2024 22:17 : Solicitação de listagem de arquivos do servidor
+22/01/2024 22:18 : Servidor iniciado
+22/01/2024 22:18 : Cliente conectado 64659
+22/01/2024 22:18 : Solicitação de listagem de arquivos do servidor
+22/01/2024 22:18 : Solicitação de listagem de arquivos do servidor
+22/01/2024 22:41 : Servidor iniciado
+22/01/2024 22:42 : Cliente conectado 64716
+22/01/2024 22:42 : Servidor iniciado
+22/01/2024 22:42 : Cliente conectado 64719
+22/01/2024 22:44 : Servidor iniciado
+22/01/2024 22:44 : Cliente conectado 64721
+22/01/2024 22:44 : Servidor iniciado
+22/01/2024 22:44 : Cliente conectado 64724
+22/01/2024 22:46 : Servidor iniciado
+22/01/2024 22:46 : Cliente conectado 64725
+22/01/2024 22:54 : Servidor iniciado
+22/01/2024 22:54 : Servidor iniciado
+22/01/2024 22:54 : Cliente conectado 64843
+22/01/2024 23:03 : Servidor iniciado
+22/01/2024 23:03 : Cliente conectado 64861
+22/01/2024 23:07 : Servidor iniciado
+22/01/2024 23:07 : Cliente conectado 64877
+22/01/2024 23:09 : Servidor iniciado
+22/01/2024 23:09 : Cliente conectado 64879
+22/01/2024 23:11 : Servidor iniciado
+22/01/2024 23:11 : Cliente conectado 64881
+22/01/2024 23:19 : Servidor iniciado
+22/01/2024 23:19 : Cliente conectado 64892
+22/01/2024 23:24 : Servidor iniciado
+22/01/2024 23:25 : Cliente conectado 64997
+22/01/2024 23:25 : Servidor iniciado
+22/01/2024 23:25 : Cliente conectado 64999
+22/01/2024 23:40 : Servidor iniciado

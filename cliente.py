@@ -1,14 +1,12 @@
 import socket
-from threading import Thread, Semaphore
+from threading import Thread
 import time
+import mensagem
+import pickle
 
 
 HOST = "localhost"
 PORT = 8000
-msg = ''
-
-sem_thread1 = Semaphore(1)
-sem_thread2 = Semaphore(0)
 
 
 def main():
@@ -16,93 +14,118 @@ def main():
 
     try:
         cliente.connect((HOST,PORT))
-        print ("Conectado ao servidor.")
+        print ("Conectado ao servidor.\n")
+        print("Cliente ip/porta: ",cliente.getsockname())
+        enviar_msgs(cliente)
     except:
-        return print("Não foi possível conectar ao servidor.")
-    
-    #thread1 = Thread(target=enviar_msgs, args= [cliente])
+        print("Não foi possível conectar ao servidor.")
+        time.sleep(5)
+        main()
+        #return 
+        
+  
     thread1 = Thread(target=receber_msgs, args= [cliente])
-
     thread1.start()
+
+    
 
 #receber msgs do servidor
 def receber_msgs(cliente):
     while True:
         try:
-            #sem_thread1.acquire()
-            msg = cliente.recv(2048).decode('utf-8')
+            objeto_msg = cliente.recv(2048)
+            objeto = deserializar(objeto_msg)
+            msg = objeto["comando"]
 
-            if msg == "-1":
-                opcao = input("**** Digite a opção desejada novamente a seguir ****\n")
-                cliente.send(opcao.encode('utf-8'))
-            elif msg.count(',') >=1:
-                tratar_vetor(msg)
-            elif msg.count(',') == 0 and not msg[:9] == "solicitar":
-                print(msg)    
-            elif msg == "solicitar download":
-                #sem_thread2.acquire()
+            if msg == "listagem_servidor":
+                tratar_vetor(objeto["dados"])
+                time.sleep(2)
+                enviar_msgs(cliente)
+
+            if msg == "listagem_cliente":
+                tratar_vetor(objeto["dados"])
+                time.sleep(2)
+                enviar_msgs(cliente)
+
+            elif msg == "solicitar_download":
+                tratar_vetor(objeto["dados"])
+                print("----------- ÁREA DE DOWNLOAD -----------\n")
                 nome_arquivo = input("Digite o nome do arquivo para fazer download: \n")    
-                cliente.send(nome_arquivo+' download'.encode('utf-8'))
-                #time.sleep(20)
-                #time.sleep(5)
-            elif msg == "solicitar upload":
-                nome_arquivo = input("Digite o nome do arquivo para fazer upload: \n")
-                cliente.send(nome_arquivo+' upload'.encode('utf-8'))
+                enviar_estrutura_msg("solicitar_download", nome_arquivo, cliente)
             
-            elif msg == "solicitar delecao":
-                nome_arquivo = input("Digite o nome do arquivo para deletar: \n")
-                cliente.send(nome_arquivo+' delecao'.encode('utf-8'))
-
+            elif msg == "solicitar_delecao":
+                tratar_vetor(objeto["dados"])
+                print("----------- ÁREA DE DELEÇÃO -----------\n")
+                nome_arquivo = input("Digite o nome do arquivo para fazer deleção: \n")
+                enviar_estrutura_msg("solicitar_delecao", nome_arquivo, cliente)
+            
+            elif msg == "solicitar_upload":
+                tratar_vetor(objeto["dados"])
+                print("----------- ÁREA DE UPLOAD -----------\n")
+                nome_arquivo = input("Digite o nome do arquivo para fazer upload: \n")
+                enviar_estrutura_msg("solicitar_upload", nome_arquivo, cliente)
+            
+            elif msg == "retorno":
+                msg_retorno = objeto["dados"]
+                print (msg_retorno)
+                time.sleep(2)
+                enviar_msgs(cliente)
+            
         except:
             print ("Não foi possível continuar conectado ao servidor")
             cliente.close()
-            
             return
-        #time.sleep(8)
-        
-            #break
         
 
-
-#menu
-def menu():
-    print("------------ MEUS ARQUIVOS -------------\n")  
-    print("1. Listagem de arquivos do servidor")
-    print("2. Listagem de arquivos do cliente")
-    print("3. Download de arquivos do servidor")
-    print("4. Deleção de arquivos no servidor")
-    print("5. Upload de arquivos para o servidor")
 
 
 #enviar msgs para o servidor
 def enviar_msgs(cliente):
-    while True:
-        try:
-            #sem_thread2.acquire()
-            time.sleep(2)
-            print("------------ MEUS ARQUIVOS -------------\n")  
-            print("1. Listagem de arquivos do servidor")
-            print("2. Listagem de arquivos do cliente")
-            print("3. Download de arquivos do servidor")
-            print("4. Deleção de arquivos no servidor")
-            print("5. Upload de arquivos para o servidor")
+        time.sleep(2)
+        opcao = ""
+        print("------------ MEUS ARQUIVOS -------------\n")  
+        print("1. Listagem de arquivos do servidor")
+        print("2. Listagem de arquivos do cliente")
+        print("3. Download de arquivos do servidor")
+        print("4. Deleção de arquivos no servidor")
+        print("5. Upload de arquivos para o servidor")
 
-            msg = input("Digite a opção desejada:\n->")
-            cliente.send(msg.encode('utf-8'))
+        msg = input("Digite a opção desejada:\n->")
+        if msg == "1": 
+            opcao = "listagem_servidor"
+        elif msg == "2": 
+            opcao = "listagem_cliente"
+        elif msg == "3": 
+            opcao = "download"
+        elif msg == "4": 
+            opcao = "delecao"
+        elif msg == "5": 
+            opcao = "upload" 
+        else:
+            print("Opção digitada inexistente! Selecione a opção correta.")
+            enviar_msgs(cliente)
 
-            #time.sleep(40)
-           
-
-        except:
-            return
+        enviar_estrutura_msg(opcao, ' ', cliente)
         
-
 def tratar_vetor(msg):
     lista = []
     lista = msg.split(",")
     for item in lista:
         print (item)
 
- 
-menu()
+def enviar_estrutura_msg(comando, dados, cliente):
+    msg = {"comando":comando,"dados":dados}
+    obj_serial = serializar(msg)
+    cliente.send(obj_serial)
+                   
+def serializar (objeto):
+    objeto_serializado = pickle.dumps(objeto)
+    return objeto_serializado
+
+def deserializar(objeto_recebido):
+    objeto = pickle.loads(objeto_recebido)
+    return objeto
+
+
+
 main()
