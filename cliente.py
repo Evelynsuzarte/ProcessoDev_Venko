@@ -1,7 +1,6 @@
 import socket
 from threading import Thread
 import time
-import mensagem
 import pickle
 
 
@@ -9,6 +8,9 @@ HOST = "localhost"
 PORT = 8000
 
 
+"""
+Função main que inicializa o cliente, conectando ao servidor, e a thread
+"""
 def main():
     cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 
@@ -21,15 +23,19 @@ def main():
         print("Não foi possível conectar ao servidor.")
         time.sleep(5)
         main()
-        #return 
         
   
     thread1 = Thread(target=receber_msgs, args= [cliente])
     thread1.start()
 
     
+"""
+Função para a Thread, recebe as mensagens que o servidor envia
+    
+    :param parametro1: cliente.
+    :tipo parametro1: socket.
 
-#receber msgs do servidor
+"""
 def receber_msgs(cliente):
     while True:
         try:
@@ -78,8 +84,13 @@ def receber_msgs(cliente):
         
 
 
+"""
+Envia a mensagem referente as opções do menu
+    
+    :param parametro1: cliente
+    :tipo parametro1: socket
 
-#enviar msgs para o servidor
+"""
 def enviar_msgs(cliente):
         time.sleep(2)
         opcao = ""
@@ -106,26 +117,61 @@ def enviar_msgs(cliente):
             enviar_msgs(cliente)
 
         enviar_estrutura_msg(opcao, ' ', cliente)
-        
+
+
+"""
+Trata a string de lista de arquivos recebido, transformando em uma lista e exibindo
+    
+    :param parametro1: msg.
+    :tipo parametro1: string.
+
+"""
 def tratar_vetor(msg):
     lista = []
     lista = msg.split(",")
     for item in lista:
         print (item)
 
+
+"""
+Envia a mensagem desejada no formato de dicionário, mas para isso é necessário os dados de comando e as informações
+    :param parametro1: comando.
+    :tipo parametro1: string.
+    :param parametro2: dados.
+    :tipo parametro2: string.
+    :param parametro3: cliente.
+    :tipo parametro3: socket.
+  
+"""
 def enviar_estrutura_msg(comando, dados, cliente):
     msg = {"comando":comando,"dados":dados}
     obj_serial = serializar(msg)
     cliente.send(obj_serial)
-                   
+
+
+"""
+Função que serializa uma mensagem que não seja uma string simples para ser enviada via socket
+    :param parametro1: objeto.
+    :tipo parametro1: dicionário.
+    :return: Objeto serializado.
+    :rtipo: obj.
+"""
 def serializar (objeto):
     objeto_serializado = pickle.dumps(objeto)
     return objeto_serializado
 
+
+"""
+Função que deserializa uma mensagem depois de ser recebida via socket
+    :param parametro1: objeto.
+    :tipo parametro1: string.
+    :return: Objeto deserializado.
+    :rtipo: dicionario.
+"""
 def deserializar(objeto_recebido):
     objeto = pickle.loads(objeto_recebido)
     return objeto
 
 
-
+#--------------------------
 main()
