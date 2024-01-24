@@ -19,15 +19,16 @@ def main():
         print ("Conectado ao servidor.\n")
         print("Cliente ip/porta: ",cliente.getsockname())
         enviar_msgs(cliente)
+        
     except:
         print("Não foi possível conectar ao servidor.")
         cliente.close()
         time.sleep(5)
-        
-        
+        main()
         
     thread1 = Thread(target=receber_msgs, args= [cliente])
     thread1.start()
+        
 
     
 """
@@ -79,9 +80,9 @@ def receber_msgs(cliente):
                 enviar_msgs(cliente)
             
         except:
-            print ("Não foi possível continuar conectado ao servidor")
+            print ("Você foi desconectado do servidor!")
             cliente.close()
-            return
+            main()
         
 
 
