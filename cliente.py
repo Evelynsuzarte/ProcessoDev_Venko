@@ -21,10 +21,11 @@ def main():
         enviar_msgs(cliente)
     except:
         print("Não foi possível conectar ao servidor.")
+        cliente.close()
         time.sleep(5)
-        main()
         
-  
+        
+        
     thread1 = Thread(target=receber_msgs, args= [cliente])
     thread1.start()
 

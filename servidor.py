@@ -2,7 +2,6 @@ import socket
 from threading import Thread
 import os
 import shutil
-from datetime import datetime
 import time
 import pickle
 
@@ -19,25 +18,27 @@ Função main que inicializa o cliente, conectando ao cliente, e a thread
 def main():
     servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 
-    #inicialização de servidor
-    try:
-        servidor.bind((HOST,PORT))
-        servidor.listen()
-        print ("Servidor inicializado.")
-    except:
-        print ("Não possível inicializar o servidor.")
-        time.sleep(5)
-        main()
-        #return
+    while True:
+        #inicialização de servidor
+        try:
+            servidor.bind((HOST,PORT))
+            servidor.listen()
+            print ("Servidor inicializado.")
+            break
+        except:
+            print ("Não possível inicializar o servidor.")
+            time.sleep(5)
+            main()
+            #return
     
-    #adiciona cliente na lista de clientes e cria uma thread para ele
     while True:
         cliente, addr = servidor.accept()
-        clientes.append(cliente)
         print("Cliente conectado: ", addr)
+        clientes.append(cliente)
 
         thread = Thread(target=processar_msgs, args=[cliente])
         thread.start()
+            
 
 
 
@@ -104,9 +105,12 @@ def processar_msgs(cliente):
                           
 
         except:
+            print("Cliente se desconectou.")
             delete_cliente(cliente)
-            time.sleep(5)
-            main()
+            cliente.close()
+            time.sleep(2)
+            break
+            
        
 
 """
@@ -117,23 +121,8 @@ Deleta os clientes inativos
 
 """
 def delete_cliente(cliente):
-    clientes.remove(cliente)
-
-
-"""
-Envia a mensagem para o cliente
-    
-    :param parametro1: cliente
-    :tipo parametro1: socket
-    :param parametro1: msg
-    :tipo parametro1: string
-
-"""
-def enviar_msgs(cliente, msg):
-    try:
-        cliente.send(msg.encode('utf-8'))
-    except:
-        delete_cliente(cliente)
+    if cliente in clientes:
+        clientes.remove(cliente)
 
 
 #funções de manipulação de arquivos --------------------------------
@@ -198,6 +187,7 @@ def deletar_arquivo(nome_arquivo):
         return "O arquivo não existe. Digite o nome do arquivo corretamente."
 
 
+#-----------------------------------------------------------------
 """
 Trata o vetor de arquivos recebido, transformando em uma string
     
@@ -252,7 +242,6 @@ def enviar_estrutura_msg(comando, dados, cliente):
         cliente.send(obj_serial)
     except:
         print('Não foi possível enviar msg')
-        delete_cliente(cliente)
 
 #-------------------------------------------------------------------
         
